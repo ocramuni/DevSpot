@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevSpot\DevSpot.csproj" />
+    <ProjectReference Include="..\..\src\DevSpot\DevSpot.csproj" />
   </ItemGroup>
 
   <ItemGroup>

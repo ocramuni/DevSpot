@@ -1,11 +1,10 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevSpot", "DevSpot\DevSpot.csproj", "{BF4371AD-B053-43B4-B466-16BEEA67A9DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevSpot", "src\DevSpot\DevSpot.csproj", "{BF4371AD-B053-43B4-B466-16BEEA67A9DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSpot.Test", "DevSpot.Test\DevSpot.Test.csproj", "{F1480381-80C2-4D3D-B84D-7200D021C46C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSpot.Test", "tests\DevSpot.Test\DevSpot.Test.csproj", "{F1480381-80C2-4D3D-B84D-7200D021C46C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
