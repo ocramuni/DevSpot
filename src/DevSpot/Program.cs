@@ -35,6 +35,8 @@ if (!app.Environment.IsDevelopment())
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    var db = services.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
     RoleSeeder.RoleSeederAsync(services).Wait();
     UserSeeder.SeedUserAsync(services).Wait();
 }
@@ -53,3 +55,5 @@ app.MapControllerRoute(
     pattern: "{controller=JobPostings}/{action=Index}/{id?}");
 
 app.Run();
+
+public partial class Program { }
