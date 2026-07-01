@@ -1,0 +1,220 @@
+You are a senior .NET 8 test architect and implementation agent working inside an existing repository.
+
+Your job is to inspect the real codebase and implement a complete acceptance testing solution for an ASP.NET Core application that uses Razor Pages / MVC, EF Core, and SQLite.
+
+Important rules:
+- First inspect the repository and identify the actual app structure before coding.
+- Never guess names of projects, namespaces, DbContexts, migrations, seed classes, routes, or auth setup.
+- Reuse existing code whenever possible.
+- Prefer minimal, conservative changes to the application code.
+- Do not leave TODOs, pseudocode, placeholders, empty methods, or partial scaffolding.
+- Deliver real, compilable code that runs with `dotnet test`.
+
+Primary goal:
+Create a separate .NET 8 acceptance test project for the existing ASP.NET Core app using:
+- Reqnroll
+- xUnit
+- Reqnroll + Microsoft.Extensions.DependencyInjection
+- ASP.NET Core `WebApplicationFactory<Program>`
+- SQLite in-memory
+- existing EF Core migrations
+- existing application seed logic
+- HTML parsing for form handling
+- no Selenium
+- no Playwright
+- no browser automation
+
+Application context:
+- The app uses ASP.NET Core with Razor Pages / MVC classic server-rendered forms.
+- The production database is SQLite.
+- Migrations already exist.
+- Seed logic already exists and should be reused.
+- The tests must validate form behavior through integration testing, not browser automation.
+
+Required architecture:
+1. Create a separate project, preferably named `DevSpot.AcceptanceTests`.
+2. Target `.NET 8`.
+3. Use xUnit as the runner.
+4. Use Reqnroll for Gherkin/BDD tests.
+5. Use `Reqnroll.Microsoft.Extensions.DependencyInjection`.
+6. Use `Microsoft.AspNetCore.Mvc.Testing`.
+7. Use SQLite in-memory, not EF Core InMemory provider.
+8. Keep SQLite in-memory alive with one shared open `SqliteConnection`.
+9. Reuse existing migrations via `Database.Migrate()`.
+10. Reuse existing seed code from the application.
+11. Support anonymous and authenticated scenarios.
+12. Keep step definitions thin and business-readable.
+
+Test behavior requirements:
+- Test server-rendered forms using `HttpClient` against the in-memory ASP.NET Core host.
+- For form POST tests:
+  1. GET the page containing the form
+  2. parse HTML
+  3. extract form metadata, hidden fields, antiforgery token, and required cookies
+  4. build a reusable form session object
+  5. fill fields
+  6. POST the form
+  7. verify response, redirect, validation errors, authorization, and persisted data
+- Hide low-level antiforgery and HTML mechanics behind support services.
+- Do not expose antiforgery or HTML implementation details in Gherkin steps.
+
+Required project structure:
+Create something close to this, adapted to the real repo names and namespaces:
+
+tests/DevSpot.AcceptanceTests/
+├─ Features/
+│  ├─ JobPosting/
+│  └─ Account/
+├─ Steps/
+│  ├─ Common/
+│  ├─ Forms/
+│  └─ Domain/
+├─ Hooks/
+├─ Fixtures/
+├─ Infrastructure/
+│  ├─ Hosting/
+│  ├─ Database/
+│  ├─ Authentication/
+│  └─ Reqnroll/
+├─ Support/
+│  ├─ Http/
+│  ├─ Html/
+│  ├─ Forms/
+│  ├─ State/
+│  └─ Assertions/
+├─ reqnroll.json
+├─ appsettings.Test.json
+└─ DevSpot.AcceptanceTests.csproj
+
+Required core responsibilities:
+- `AcceptanceTestFixture`
+  - owns shared infrastructure
+  - opens and keeps alive SQLite in-memory connection
+  - creates the custom `WebApplicationFactory`
+  - disposes resources cleanly
+- `CustomWebApplicationFactory`
+  - derives from `WebApplicationFactory<Program>`
+  - swaps the application DbContext to SQLite in-memory
+  - configures test auth if required
+  - keeps startup behavior as close as possible to production
+- `DatabaseInitializer`
+  - applies migrations with `Database.Migrate()`
+- `DatabaseResetter`
+  - resets per-scenario data state
+- `DatabaseSeeder`
+  - reuses existing application seeds
+- `SeedProfileResolver`
+  - maps tags like `@seed:roles`, `@seed:users`
+- Scenario-scoped typed state objects
+  - do not rely primarily on raw `ScenarioContext` dictionary usage
+- Support services for:
+  - route/navigation
+  - HTTP context per scenario
+  - HTML parsing
+  - form discovery
+  - antiforgery extraction
+  - form session building
+  - form filling
+  - form submission
+  - reusable assertions
+
+Scenario lifecycle:
+Implement ordered Reqnroll hooks with this exact sequence:
+- `BeforeScenario(Order = 0)`: clear scenario-scoped state
+- `BeforeScenario(Order = 10)`: reset database state
+- `BeforeScenario(Order = 20)`: apply base seeds
+- `BeforeScenario(Order = 30)`: apply tag-specific seeds
+- `BeforeScenario(Order = 40)`: configure scenario auth profile
+- `BeforeScenario(Order = 50)`: create/configure `HttpClient` and HTTP state
+- Forms should normally be loaded by navigation steps, not auto-loaded globally
+- `AfterScenario(Order = 1000)`: failure diagnostics and cleanup
+
+Tag conventions:
+Support these tags:
+- `@seed:roles`
+- `@seed:users`
+- `@auth:anonymous`
+- `@auth:jobseeker`
+- `@auth:employer`
+- `@auth:admin`
+
+Step design rules:
+- Steps must be business-readable.
+- Keep step definitions very thin.
+- Use services for real work.
+- Prefer steps like:
+  - `Given I am on the "Contact" page`
+  - `When I fill the form with the following values`
+  - `And I submit the form`
+  - `Then I should see a validation error for the field "Email"`
+  - `Then I should be redirected to the confirmation page`
+- Use Gherkin tables for form values.
+- Do not expose CSS selectors, hidden field names, or antiforgery details in feature files.
+
+Authentication requirements:
+- Implement fake test authentication with configurable roles/claims.
+- Default scenario should be anonymous.
+- Auth should be activated only via tags or explicit steps.
+- Support at least `anonymous`, `user`, and `admin`.
+
+Initial feature coverage:
+Generate realistic initial features and steps based on actual forms found in the repository:
+1. A public or semi-public form with server-side validation
+2. An authenticated form accessible only to logged-in users
+3. A valid submit with redirect and data persistence
+4. An invalid submit with validation errors
+5. An unauthorized or redirect-to-login case
+
+Repository analysis instructions:
+Before implementing, inspect and identify:
+- the main web application project
+- the `Program` entry point
+- the real EF Core DbContext
+- migrations location
+- existing seed logic
+- current auth setup
+- relevant Razor Pages / MVC forms suitable for acceptance tests
+- project naming and namespace conventions
+
+Implementation instructions:
+- Create the acceptance test project and wire project references correctly.
+- Add only the required packages.
+- Configure Reqnroll correctly for feature generation/build.
+- Reuse the app’s migrations and seeds.
+- Implement all infrastructure completely.
+- If a small app change is required to make testing possible, keep it minimal and explain it clearly.
+- Do not introduce unnecessary abstractions.
+- Do not create demo-only code if the repo already contains reusable production code.
+- Ensure everything is coherent and compilable.
+
+Execution and verification:
+After coding:
+1. run restore/build/test commands
+2. fix errors
+3. verify the acceptance test project is wired correctly
+4. confirm final status
+
+Required output format:
+1. Brief repository analysis
+2. Short implementation plan
+3. File tree of created/modified files
+4. Full code for all new files and all modified files
+5. Commands executed
+6. Final build/test status
+7. Short list of assumptions, if any
+
+Quality bar:
+- production-grade
+- maintainable
+- minimal app changes
+- no browser automation
+- isolated and reliable tests
+- reusable infrastructure
+- real integration with SQLite in-memory, migrations, and seeds
+- suitable for long-term use in a real .NET 8 codebase
+
+Now inspect the repository, identify the real architecture, implement the full solution, and verify it with build/test.
+
+---
+
+Translate Gherkin features and steps and error assertion messages in Italian. Update reqnroll language configuration
