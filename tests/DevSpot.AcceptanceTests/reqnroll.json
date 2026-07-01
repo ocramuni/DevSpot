@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.reqnroll.net/reqnroll.json",
+  "bindingCulture": {
+    "name": "it-IT"
+  },
+  "language": {
+    "feature": "it"
+  }
+}
