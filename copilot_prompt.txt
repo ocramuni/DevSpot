@@ -1,0 +1,6 @@
+Inspect the repository, identify the ASP.NET Core app, DbContext, migrations, and seed logic, then implement
+the acceptance test project described in the repository instructions. Run build and tests and fix any issues.
+
+---
+
+Translate Gherkin features and steps and error assertion messages in Italian. Update reqnroll language configuration
