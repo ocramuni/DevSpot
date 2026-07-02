@@ -32,7 +32,7 @@ Application context:
 - The tests must validate form behavior through integration testing, not browser automation.
 
 Required architecture:
-1. Create a separate project, preferably named `DevSpot.AcceptanceTests`.
+1. Create a separate project, preferably named `DevSpot.Antigravity.AcceptanceTests`.
 2. Target `.NET 8`.
 3. Use xUnit as the runner.
 4. Use Reqnroll for Gherkin/BDD tests.
@@ -61,7 +61,7 @@ Test behavior requirements:
 Required project structure:
 Create something close to this, adapted to the real repo names and namespaces:
 
-tests/DevSpot.AcceptanceTests/
+tests/DevSpot.Antigravity.AcceptanceTests/
 ├─ Features/
 │  ├─ JobPosting/
 │  └─ Account/
@@ -84,7 +84,7 @@ tests/DevSpot.AcceptanceTests/
 │  └─ Assertions/
 ├─ reqnroll.json
 ├─ appsettings.Test.json
-└─ DevSpot.AcceptanceTests.csproj
+└─ DevSpot.Antigravity.AcceptanceTests.csproj
 
 Required core responsibilities:
 - `AcceptanceTestFixture`
