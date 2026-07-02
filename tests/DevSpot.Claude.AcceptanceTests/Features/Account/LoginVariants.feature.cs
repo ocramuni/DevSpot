@@ -11,28 +11,29 @@
 #region Designer generated code
 #pragma warning disable
 using Reqnroll;
-namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
+namespace DevSpot.Claude.AcceptanceTests.Features.Account
 {
     
     
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class VisualizzazioneDegliAnnunciDiLavoroFeature : object, global::Xunit.IClassFixture<VisualizzazioneDegliAnnunciDiLavoroFeature.FixtureData>, global::Xunit.IAsyncLifetime
+    public partial class AccessoConDiversiTipiDiUtentiFeature : object, global::Xunit.IClassFixture<AccessoConDiversiTipiDiUtentiFeature.FixtureData>, global::Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Visualizzazione degli annunci di lavoro", "  Come visitatore\n  Voglio vedere la lista degli annunci di lavoro disponibili\n  " +
-                "In modo da poter sfogliare le opportunità", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/Account", "Accesso con diversi tipi di utenti", "  Come utente registrato\n  Voglio poter accedere alla piattaforma con il mio tipo" +
+                " di account\n  In modo da verificare che l\'autenticazione funzioni correttamente " +
+                "per tutti i ruoli", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
         private global::Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ViewJobPostings.feature"
+#line 1 "LoginVariants.feature"
 #line hidden
         
-        public VisualizzazioneDegliAnnunciDiLavoroFeature(VisualizzazioneDegliAnnunciDiLavoroFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public AccessoConDiversiTipiDiUtentiFeature(AccessoConDiversiTipiDiUtentiFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
         }
@@ -106,7 +107,7 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/ViewJobPostings.feature.ndjson", 5);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Account/LoginVariants.feature.ndjson", 5);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -134,15 +135,15 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             await this.TestTearDownAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="L\'utente anonimo può vedere la pagina degli annunci")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "L\'utente anonimo può vedere la pagina degli annunci")]
-        public async global::System.Threading.Tasks.Task LutenteAnonimoPuoVedereLaPaginaDegliAnnunci()
+        [global::Xunit.SkippableFactAttribute(DisplayName="L\'amministratore accede con credenziali valide")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Accesso con diversi tipi di utenti")]
+        [global::Xunit.TraitAttribute("Description", "L\'amministratore accede con credenziali valide")]
+        public async global::System.Threading.Tasks.Task LamministratoreAccedeConCredenzialiValide()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'utente anonimo può vedere la pagina degli annunci", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'amministratore accede con credenziali valide", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 6
@@ -156,57 +157,39 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             {
                 await this.ScenarioStartAsync();
 #line 7
-    await testRunner.WhenAsync("visito la pagina \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+    await testRunner.GivenAsync("sono sulla pagina del modulo \"/Identity/Account/Login\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
+                global::Reqnroll.Table table3 = new global::Reqnroll.Table(new string[] {
+                            "Campo",
+                            "Valore"});
+                table3.AddRow(new string[] {
+                            "Input.Email",
+                            "admin@devspot.com"});
+                table3.AddRow(new string[] {
+                            "Input.Password",
+                            "Admin123!"});
 #line 8
-    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table3, "Quando ");
+#line hidden
+#line 12
+    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 13
+    await testRunner.ThenAsync("vengo reindirizzato a \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="L\'utente anonimo può navigare a /JobPostings")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "L\'utente anonimo può navigare a /JobPostings")]
-        public async global::System.Threading.Tasks.Task LutenteAnonimoPuoNavigareAJobPostings()
+        [global::Xunit.SkippableFactAttribute(DisplayName="Il cercatore di lavoro accede con credenziali valide")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Accesso con diversi tipi di utenti")]
+        [global::Xunit.TraitAttribute("Description", "Il cercatore di lavoro accede con credenziali valide")]
+        public async global::System.Threading.Tasks.Task IlCercatoreDiLavoroAccedeConCredenzialiValide()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "1";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'utente anonimo può navigare a /JobPostings", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 10
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 11
-    await testRunner.WhenAsync("visito la pagina \"/JobPostings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
-#line hidden
-#line 12
-    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Il datore di lavoro può creare un annuncio e vederlo nella lista")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "Il datore di lavoro può creare un annuncio e vederlo nella lista")]
-        [global::Xunit.TraitAttribute("Category", "auth:employer")]
-        public async global::System.Threading.Tasks.Task IlDatoreDiLavoroPuoCreareUnAnnuncioEVederloNellaLista()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "auth:employer"};
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "2";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il datore di lavoro può creare un annuncio e vederlo nella lista", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il cercatore di lavoro accede con credenziali valide", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 15
@@ -220,34 +203,74 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             {
                 await this.ScenarioStartAsync();
 #line 16
-    await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+    await testRunner.GivenAsync("sono sulla pagina del modulo \"/Identity/Account/Login\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table16 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
                             "Campo",
                             "Valore"});
-                table16.AddRow(new string[] {
-                            "Title",
-                            "Senior .NET Dev"});
-                table16.AddRow(new string[] {
-                            "Description",
-                            "Exciting role"});
-                table16.AddRow(new string[] {
-                            "Company",
-                            "TechCorp"});
-                table16.AddRow(new string[] {
-                            "Location",
-                            "Trieste"});
+                table4.AddRow(new string[] {
+                            "Input.Email",
+                            "jobseeker@devspot.com"});
+                table4.AddRow(new string[] {
+                            "Input.Password",
+                            "JobSeeker123!"});
 #line 17
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table16, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table4, "Quando ");
 #line hidden
-#line 23
+#line 21
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
-#line 24
+#line 22
     await testRunner.ThenAsync("vengo reindirizzato a \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="L\'accesso fallisce con un utente inesistente")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Accesso con diversi tipi di utenti")]
+        [global::Xunit.TraitAttribute("Description", "L\'accesso fallisce con un utente inesistente")]
+        public async global::System.Threading.Tasks.Task LaccessoFallisceConUnUtenteInesistente()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "2";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'accesso fallisce con un utente inesistente", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 24
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
 #line 25
-    await testRunner.AndAsync("l\'annuncio \"Senior .NET Dev\" viene salvato nel database", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+    await testRunner.GivenAsync("sono sulla pagina del modulo \"/Identity/Account/Login\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
+                            "Campo",
+                            "Valore"});
+                table5.AddRow(new string[] {
+                            "Input.Email",
+                            "nonexistente@example.com"});
+                table5.AddRow(new string[] {
+                            "Input.Password",
+                            "Password123!"});
+#line 26
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table5, "Quando ");
+#line hidden
+#line 30
+    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 31
+    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 32
+    await testRunner.AndAsync("la pagina contiene \"Invalid login attempt\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -260,12 +283,12 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
             {
-                await VisualizzazioneDegliAnnunciDiLavoroFeature.FeatureSetupAsync();
+                await AccessoConDiversiTipiDiUtentiFeature.FeatureSetupAsync();
             }
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
             {
-                await VisualizzazioneDegliAnnunciDiLavoroFeature.FeatureTearDownAsync();
+                await AccessoConDiversiTipiDiUtentiFeature.FeatureTearDownAsync();
             }
         }
     }

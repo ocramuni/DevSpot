@@ -59,6 +59,10 @@ public static class HtmlDocumentParser
                 // Including it here causes it to be sent twice, breaking validation.
                 if (string.Equals(input.Name, "__RequestVerificationToken", StringComparison.OrdinalIgnoreCase))
                     continue;
+                // For radio buttons only include the checked option; including all of them
+                // would overwrite the checked value with the last unchecked one in the group.
+                if (input.Type == "radio" && !input.IsChecked)
+                    continue;
                 fields[input.Name] = input.Value ?? string.Empty;
             }
             else if (element is IHtmlTextAreaElement textarea && !string.IsNullOrEmpty(textarea.Name))

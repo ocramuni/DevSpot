@@ -53,6 +53,22 @@ public sealed class HttpAssertions
             $"Expected redirect to login page but location was '{location}'.");
     }
 
+    /// <summary>
+    /// Verifica che la risposta indichi accesso negato: HTTP 403 oppure
+    /// redirect verso la pagina AccessDenied (comportamento predefinito di ASP.NET Core Identity).
+    /// </summary>
+    public void AssertAccessDenied()
+    {
+        var status = (int)_state.LastStatusCode;
+        var location = _state.LastRedirectLocation?.OriginalString ?? string.Empty;
+        var isDenied = status == 403 ||
+                       (status is >= 300 and < 400 &&
+                        location.Contains("AccessDenied", StringComparison.OrdinalIgnoreCase));
+        Assert.True(isDenied,
+            $"Era atteso accesso negato (403 o redirect ad AccessDenied) " +
+            $"ma si è ricevuto: {_state.LastStatusCode} {location}");
+    }
+
     public async Task AssertValidationErrorForAsync(string fieldName)
     {
         Assert.False(string.IsNullOrEmpty(_state.LastResponseContent),

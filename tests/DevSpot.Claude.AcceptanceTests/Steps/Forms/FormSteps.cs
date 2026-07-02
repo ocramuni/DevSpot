@@ -75,4 +75,10 @@ public sealed class FormSteps
     {
         await _assert.AssertPageDoesNotContainTextAsync(text);
     }
+
+    [Then("ricevo una risposta di accesso negato")]
+    public void AssertAccessDenied()
+    {
+        _assert.AssertAccessDenied();
+    }
 }

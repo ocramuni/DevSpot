@@ -51,6 +51,13 @@ public sealed class HttpClientSession
         return response;
     }
 
+    public async Task<HttpResponseMessage> DeleteAsync(string path)
+    {
+        var response = await Client.DeleteAsync(path);
+        await CaptureAsync(response);
+        return response;
+    }
+
     /// <summary>
     /// Follows a redirect response (3xx) and captures the result.
     /// Useful when AllowAutoRedirect=false and we need to land on the target page.

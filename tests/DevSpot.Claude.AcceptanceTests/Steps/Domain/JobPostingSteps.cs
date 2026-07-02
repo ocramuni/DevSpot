@@ -1,8 +1,11 @@
 using DevSpot.Claude.AcceptanceTests.Fixtures;
+using DevSpot.Claude.AcceptanceTests.Infrastructure.Authentication;
 using DevSpot.Claude.AcceptanceTests.Support.Assertions;
 using DevSpot.Claude.AcceptanceTests.Support.Forms;
 using DevSpot.Claude.AcceptanceTests.Support.Http;
 using DevSpot.Data;
+using DevSpot.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reqnroll;
@@ -81,5 +84,58 @@ public sealed class JobPostingSteps
         var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         var count = await db.JobPosting.CountAsync();
         Assert.Equal(expectedCount, count);
+    }
+
+    // ── Nuovi step per creazione diretta nel DB, cancellazione e verifica ─────
+
+    /// <summary>
+    /// Inserisce direttamente nel database un annuncio intestato all'utente
+    /// identificato dal profilo di autenticazione (es. "employer", "admin").
+    /// Non passa per il form HTTP: utile per preparare lo stato iniziale
+    /// di scenari focalizzati su operazioni diverse dalla creazione.
+    /// </summary>
+    [Given(@"nel database esiste un annuncio con titolo {string} dell'utente {string}")]
+    public async Task CreateJobPostingInDb(string title, string userProfile)
+    {
+        var (email, _) = AuthProfile.CredentialsFor(userProfile);
+
+        using var scope = _fixture.Factory.Services.CreateScope();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+        var user = await userManager.FindByEmailAsync(email)
+            ?? throw new InvalidOperationException(
+                $"Utente con profilo '{userProfile}' (email: {email}) non trovato nel database.");
+
+        var posting = new JobPosting
+        {
+            Title = title,
+            Description = "Descrizione di test",
+            Company = "Azienda di test",
+            Location = "Luogo di test",
+            UserId = user.Id
+        };
+
+        db.JobPosting.Add(posting);
+        await db.SaveChangesAsync();
+    }
+
+    [When(@"invio la richiesta di cancellazione per l'annuncio {string}")]
+    public async Task SendDeleteRequest(string title)
+    {
+        using var scope = _fixture.Factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var posting = await db.JobPosting.FirstAsync(jp => jp.Title == title);
+        await _http.DeleteAsync($"/JobPostings/Delete/{posting.Id}");
+    }
+
+    [Then(@"l'annuncio {string} non è più presente nel database")]
+    public async Task AssertJobPostingDeleted(string title)
+    {
+        using var scope = _fixture.Factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var exists = await db.JobPosting.AnyAsync(jp => jp.Title == title);
+        Assert.False(exists,
+            $"L'annuncio '{title}' dovrebbe essere stato cancellato ma è ancora presente nel database.");
     }
 }

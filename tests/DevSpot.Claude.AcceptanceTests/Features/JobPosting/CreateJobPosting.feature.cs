@@ -160,23 +160,23 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
 #line 8
     await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table3 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table11 = new global::Reqnroll.Table(new string[] {
                             "Campo",
                             "Valore"});
-                table3.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Title",
                             ".NET Developer"});
-                table3.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Description",
                             "Looking for a .NET dev"});
-                table3.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Company",
                             "Acme Srl"});
-                table3.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Location",
                             "Udine"});
 #line 9
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table3, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table11, "Quando ");
 #line hidden
 #line 15
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
@@ -217,23 +217,23 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
 #line 21
     await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table12 = new global::Reqnroll.Table(new string[] {
                             "Campo",
                             "Valore"});
-                table4.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Title",
                             ""});
-                table4.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Description",
                             "Missing title scenario"});
-                table4.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Company",
                             "Acme Srl"});
-                table4.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Location",
                             "Udine"});
 #line 22
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table4, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table12, "Quando ");
 #line hidden
 #line 28
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
@@ -274,23 +274,23 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
 #line 34
     await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table13 = new global::Reqnroll.Table(new string[] {
                             "Campo",
                             "Valore"});
-                table5.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Title",
                             "Dev Job No Description"});
-                table5.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Description",
                             ""});
-                table5.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Company",
                             "Acme Srl"});
-                table5.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "Location",
                             "Udine"});
 #line 35
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table5, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table13, "Quando ");
 #line hidden
 #line 41
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
@@ -328,23 +328,23 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
 #line 46
     await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table6 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table14 = new global::Reqnroll.Table(new string[] {
                             "Campo",
                             "Valore"});
-                table6.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Title",
                             "Dev Job No Company"});
-                table6.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Description",
                             "Some description"});
-                table6.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Company",
                             ""});
-                table6.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "Location",
                             "Udine"});
 #line 47
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table6, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table14, "Quando ");
 #line hidden
 #line 53
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
@@ -416,23 +416,23 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
 #line 62
     await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table7 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table15 = new global::Reqnroll.Table(new string[] {
                             "Campo",
                             "Valore"});
-                table7.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "Title",
                             "Admin Job Posting"});
-                table7.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "Description",
                             "Created by admin"});
-                table7.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "Company",
                             "DevSpot HQ"});
-                table7.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "Location",
                             "Remote"});
 #line 63
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table7, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table15, "Quando ");
 #line hidden
 #line 69
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");

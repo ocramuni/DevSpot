@@ -17,22 +17,22 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
     
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class VisualizzazioneDegliAnnunciDiLavoroFeature : object, global::Xunit.IClassFixture<VisualizzazioneDegliAnnunciDiLavoroFeature.FixtureData>, global::Xunit.IAsyncLifetime
+    public partial class CancellazioneDiUnAnnuncioDiLavoroFeature : object, global::Xunit.IClassFixture<CancellazioneDiUnAnnuncioDiLavoroFeature.FixtureData>, global::Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Visualizzazione degli annunci di lavoro", "  Come visitatore\n  Voglio vedere la lista degli annunci di lavoro disponibili\n  " +
-                "In modo da poter sfogliare le opportunità", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Cancellazione di un annuncio di lavoro", "  Come utente autorizzato\n  Voglio poter cancellare gli annunci di lavoro\n  In mo" +
+                "do da gestire correttamente le offerte presenti sulla piattaforma", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
         private global::Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ViewJobPostings.feature"
+#line 1 "DeleteJobPosting.feature"
 #line hidden
         
-        public VisualizzazioneDegliAnnunciDiLavoroFeature(VisualizzazioneDegliAnnunciDiLavoroFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CancellazioneDiUnAnnuncioDiLavoroFeature(CancellazioneDiUnAnnuncioDiLavoroFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
         }
@@ -106,7 +106,7 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/ViewJobPostings.feature.ndjson", 5);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/DeleteJobPosting.feature.ndjson", 5);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -134,18 +134,20 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             await this.TestTearDownAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="L\'utente anonimo può vedere la pagina degli annunci")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "L\'utente anonimo può vedere la pagina degli annunci")]
-        public async global::System.Threading.Tasks.Task LutenteAnonimoPuoVedereLaPaginaDegliAnnunci()
+        [global::Xunit.SkippableFactAttribute(DisplayName="Il datore di lavoro cancella il proprio annuncio")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Cancellazione di un annuncio di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "Il datore di lavoro cancella il proprio annuncio")]
+        [global::Xunit.TraitAttribute("Category", "auth:employer")]
+        public async global::System.Threading.Tasks.Task IlDatoreDiLavoroCancellaIlProprioAnnuncio()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "auth:employer"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'utente anonimo può vedere la pagina degli annunci", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il datore di lavoro cancella il proprio annuncio", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 6
+#line 7
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -155,28 +157,34 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
-    await testRunner.WhenAsync("visito la pagina \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
-#line hidden
 #line 8
-    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+    await testRunner.GivenAsync("nel database esiste un annuncio con titolo \"Annuncio da Cancellare\" dell\'utente \"" +
+                        "employer\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 9
+    await testRunner.WhenAsync("invio la richiesta di cancellazione per l\'annuncio \"Annuncio da Cancellare\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 10
+    await testRunner.ThenAsync("l\'annuncio \"Annuncio da Cancellare\" non è più presente nel database", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="L\'utente anonimo può navigare a /JobPostings")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "L\'utente anonimo può navigare a /JobPostings")]
-        public async global::System.Threading.Tasks.Task LutenteAnonimoPuoNavigareAJobPostings()
+        [global::Xunit.SkippableFactAttribute(DisplayName="L\'amministratore cancella l\'annuncio di un datore di lavoro")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Cancellazione di un annuncio di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "L\'amministratore cancella l\'annuncio di un datore di lavoro")]
+        [global::Xunit.TraitAttribute("Category", "auth:admin")]
+        public async global::System.Threading.Tasks.Task LamministratoreCancellaLannuncioDiUnDatoreDiLavoro()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "auth:admin"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "1";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'utente anonimo può navigare a /JobPostings", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'amministratore cancella l\'annuncio di un datore di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 10
+#line 13
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -186,30 +194,34 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             else
             {
                 await this.ScenarioStartAsync();
-#line 11
-    await testRunner.WhenAsync("visito la pagina \"/JobPostings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line 14
+    await testRunner.GivenAsync("nel database esiste un annuncio con titolo \"Annuncio del Datore\" dell\'utente \"emp" +
+                        "loyer\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-#line 12
-    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line 15
+    await testRunner.WhenAsync("invio la richiesta di cancellazione per l\'annuncio \"Annuncio del Datore\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 16
+    await testRunner.ThenAsync("l\'annuncio \"Annuncio del Datore\" non è più presente nel database", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="Il datore di lavoro può creare un annuncio e vederlo nella lista")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "Il datore di lavoro può creare un annuncio e vederlo nella lista")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Il datore di lavoro non può cancellare l\'annuncio di un altro utente")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Cancellazione di un annuncio di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "Il datore di lavoro non può cancellare l\'annuncio di un altro utente")]
         [global::Xunit.TraitAttribute("Category", "auth:employer")]
-        public async global::System.Threading.Tasks.Task IlDatoreDiLavoroPuoCreareUnAnnuncioEVederloNellaLista()
+        public async global::System.Threading.Tasks.Task IlDatoreDiLavoroNonPuoCancellareLannuncioDiUnAltroUtente()
         {
             string[] tagsOfScenario = new string[] {
                     "auth:employer"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "2";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il datore di lavoro può creare un annuncio e vederlo nella lista", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il datore di lavoro non può cancellare l\'annuncio di un altro utente", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 15
+#line 19
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -219,35 +231,15 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             else
             {
                 await this.ScenarioStartAsync();
-#line 16
-    await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line 20
+    await testRunner.GivenAsync("nel database esiste un annuncio con titolo \"Annuncio dell\'Admin\" dell\'utente \"adm" +
+                        "in\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table16 = new global::Reqnroll.Table(new string[] {
-                            "Campo",
-                            "Valore"});
-                table16.AddRow(new string[] {
-                            "Title",
-                            "Senior .NET Dev"});
-                table16.AddRow(new string[] {
-                            "Description",
-                            "Exciting role"});
-                table16.AddRow(new string[] {
-                            "Company",
-                            "TechCorp"});
-                table16.AddRow(new string[] {
-                            "Location",
-                            "Trieste"});
-#line 17
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table16, "Quando ");
+#line 21
+    await testRunner.WhenAsync("invio la richiesta di cancellazione per l\'annuncio \"Annuncio dell\'Admin\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
-#line 23
-    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
-#line hidden
-#line 24
-    await testRunner.ThenAsync("vengo reindirizzato a \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
-#line hidden
-#line 25
-    await testRunner.AndAsync("l\'annuncio \"Senior .NET Dev\" viene salvato nel database", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line 22
+    await testRunner.ThenAsync("ricevo una risposta di accesso negato", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -260,12 +252,12 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
             {
-                await VisualizzazioneDegliAnnunciDiLavoroFeature.FeatureSetupAsync();
+                await CancellazioneDiUnAnnuncioDiLavoroFeature.FeatureSetupAsync();
             }
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
             {
-                await VisualizzazioneDegliAnnunciDiLavoroFeature.FeatureTearDownAsync();
+                await CancellazioneDiUnAnnuncioDiLavoroFeature.FeatureTearDownAsync();
             }
         }
     }

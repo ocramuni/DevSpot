@@ -17,22 +17,23 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
     
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class VisualizzazioneDegliAnnunciDiLavoroFeature : object, global::Xunit.IClassFixture<VisualizzazioneDegliAnnunciDiLavoroFeature.FixtureData>, global::Xunit.IAsyncLifetime
+    public partial class VisualizzazioneAnnunciConDiversiLivelliDiAccessoFeature : object, global::Xunit.IClassFixture<VisualizzazioneAnnunciConDiversiLivelliDiAccessoFeature.FixtureData>, global::Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Visualizzazione degli annunci di lavoro", "  Come visitatore\n  Voglio vedere la lista degli annunci di lavoro disponibili\n  " +
-                "In modo da poter sfogliare le opportunità", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Visualizzazione annunci con diversi livelli di accesso", "  Come utente della piattaforma\n  Voglio poter visualizzare gli annunci di lavoro" +
+                " in base al mio ruolo\n  In modo da avere accesso alle offerte pertinenti al mio " +
+                "profilo", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
         private global::Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ViewJobPostings.feature"
+#line 1 "ViewJobPostingsPermissions.feature"
 #line hidden
         
-        public VisualizzazioneDegliAnnunciDiLavoroFeature(VisualizzazioneDegliAnnunciDiLavoroFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public VisualizzazioneAnnunciConDiversiLivelliDiAccessoFeature(VisualizzazioneAnnunciConDiversiLivelliDiAccessoFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
         }
@@ -106,7 +107,7 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/ViewJobPostings.feature.ndjson", 5);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/ViewJobPostingsPermissions.feature.ndjson", 5);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -134,82 +135,20 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             await this.TestTearDownAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="L\'utente anonimo può vedere la pagina degli annunci")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "L\'utente anonimo può vedere la pagina degli annunci")]
-        public async global::System.Threading.Tasks.Task LutenteAnonimoPuoVedereLaPaginaDegliAnnunci()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'utente anonimo può vedere la pagina degli annunci", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 6
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 7
-    await testRunner.WhenAsync("visito la pagina \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
-#line hidden
-#line 8
-    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="L\'utente anonimo può navigare a /JobPostings")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "L\'utente anonimo può navigare a /JobPostings")]
-        public async global::System.Threading.Tasks.Task LutenteAnonimoPuoNavigareAJobPostings()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "1";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'utente anonimo può navigare a /JobPostings", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 10
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 11
-    await testRunner.WhenAsync("visito la pagina \"/JobPostings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
-#line hidden
-#line 12
-    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Xunit.SkippableFactAttribute(DisplayName="Il datore di lavoro può creare un annuncio e vederlo nella lista")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione degli annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "Il datore di lavoro può creare un annuncio e vederlo nella lista")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Il datore di lavoro visualizza i propri annunci nella lista")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione annunci con diversi livelli di accesso")]
+        [global::Xunit.TraitAttribute("Description", "Il datore di lavoro visualizza i propri annunci nella lista")]
         [global::Xunit.TraitAttribute("Category", "auth:employer")]
-        public async global::System.Threading.Tasks.Task IlDatoreDiLavoroPuoCreareUnAnnuncioEVederloNellaLista()
+        public async global::System.Threading.Tasks.Task IlDatoreDiLavoroVisualizzaIPropriAnnunciNellaLista()
         {
             string[] tagsOfScenario = new string[] {
                     "auth:employer"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "2";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il datore di lavoro può creare un annuncio e vederlo nella lista", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string pickleIndex = "0";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il datore di lavoro visualizza i propri annunci nella lista", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 15
+#line 7
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -219,35 +158,97 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             else
             {
                 await this.ScenarioStartAsync();
-#line 16
-    await testRunner.GivenAsync("sono sulla pagina del modulo \"/JobPostings/Create\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line 8
+    await testRunner.GivenAsync("nel database esiste un annuncio con titolo \"Mio Annuncio\" dell\'utente \"employer\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table16 = new global::Reqnroll.Table(new string[] {
-                            "Campo",
-                            "Valore"});
-                table16.AddRow(new string[] {
-                            "Title",
-                            "Senior .NET Dev"});
-                table16.AddRow(new string[] {
-                            "Description",
-                            "Exciting role"});
-                table16.AddRow(new string[] {
-                            "Company",
-                            "TechCorp"});
-                table16.AddRow(new string[] {
-                            "Location",
-                            "Trieste"});
+#line 9
+    await testRunner.WhenAsync("visito la pagina \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 10
+    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 11
+    await testRunner.AndAsync("la pagina contiene \"Mio Annuncio\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="L\'amministratore visualizza tutti gli annunci nella lista")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione annunci con diversi livelli di accesso")]
+        [global::Xunit.TraitAttribute("Description", "L\'amministratore visualizza tutti gli annunci nella lista")]
+        [global::Xunit.TraitAttribute("Category", "auth:admin")]
+        public async global::System.Threading.Tasks.Task LamministratoreVisualizzaTuttiGliAnnunciNellaLista()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "auth:admin"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "1";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("L\'amministratore visualizza tutti gli annunci nella lista", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 14
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 15
+    await testRunner.GivenAsync("nel database esiste un annuncio con titolo \"Annuncio Visibile\" dell\'utente \"emplo" +
+                        "yer\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 16
+    await testRunner.WhenAsync("visito la pagina \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
 #line 17
-    await testRunner.WhenAsync("compilo il modulo con i seguenti dati", ((string)(null)), table16, "Quando ");
+    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 18
+    await testRunner.AndAsync("la pagina contiene \"Annuncio Visibile\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="Il cercatore di lavoro visualizza tutti gli annunci nella lista")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Visualizzazione annunci con diversi livelli di accesso")]
+        [global::Xunit.TraitAttribute("Description", "Il cercatore di lavoro visualizza tutti gli annunci nella lista")]
+        [global::Xunit.TraitAttribute("Category", "auth:jobseeker")]
+        public async global::System.Threading.Tasks.Task IlCercatoreDiLavoroVisualizzaTuttiGliAnnunciNellaLista()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "auth:jobseeker"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "2";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Il cercatore di lavoro visualizza tutti gli annunci nella lista", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 21
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 22
+    await testRunner.GivenAsync("nel database esiste un annuncio con titolo \"Offerta di Lavoro\" dell\'utente \"emplo" +
+                        "yer\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
 #line 23
-    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+    await testRunner.WhenAsync("visito la pagina \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
 #line hidden
 #line 24
-    await testRunner.ThenAsync("vengo reindirizzato a \"/\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+    await testRunner.ThenAsync("il codice di risposta è 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
 #line 25
-    await testRunner.AndAsync("l\'annuncio \"Senior .NET Dev\" viene salvato nel database", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+    await testRunner.AndAsync("la pagina contiene \"Offerta di Lavoro\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -260,12 +261,12 @@ namespace DevSpot.Claude.AcceptanceTests.Features.JobPosting
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
             {
-                await VisualizzazioneDegliAnnunciDiLavoroFeature.FeatureSetupAsync();
+                await VisualizzazioneAnnunciConDiversiLivelliDiAccessoFeature.FeatureSetupAsync();
             }
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
             {
-                await VisualizzazioneDegliAnnunciDiLavoroFeature.FeatureTearDownAsync();
+                await VisualizzazioneAnnunciConDiversiLivelliDiAccessoFeature.FeatureTearDownAsync();
             }
         }
     }
