@@ -19,6 +19,8 @@ namespace DevSpot.Antigravity.AcceptanceTests.Infrastructure.Hosting
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            builder.UseEnvironment("Test");
+
             builder.ConfigureServices(services =>
             {
                 // Remove existing ApplicationDbContext Options descriptor

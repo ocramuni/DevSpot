@@ -42,3 +42,41 @@ Funzionalità: Gestione degli Annunci di Lavoro
       | Location | Remote                   |
     E invio il modulo
     Allora dovrei vedere degli errori di validazione
+
+  @seed:users @auth:anonymous
+  Scenario: Visualizzazione annunci come utente anonimo
+    Dato che esiste un annuncio di lavoro con titolo "Developer Anonimo" inserito da "admin@devspot.com"
+    E esiste un annuncio di lavoro con titolo "Developer Azienda" inserito da "employer@devspot.com"
+    Quando navigo alla pagina "Job Postings"
+    Allora dovrei vedere l'annuncio con titolo "Developer Anonimo" nella pagina
+    E dovrei vedere l'annuncio con titolo "Developer Azienda" nella pagina
+
+  @seed:users @auth:admin
+  Scenario: Visualizzazione annunci come amministratore
+    Dato che esiste un annuncio di lavoro con titolo "Developer Anonimo" inserito da "admin@devspot.com"
+    E esiste un annuncio di lavoro con titolo "Developer Azienda" inserito da "employer@devspot.com"
+    Quando navigo alla pagina "Job Postings"
+    Allora dovrei vedere l'annuncio con titolo "Developer Anonimo" nella pagina
+    E dovrei vedere l'annuncio con titolo "Developer Azienda" nella pagina
+
+  @seed:users @auth:employer
+  Scenario: Visualizzazione annunci come datore di lavoro mostra solo i propri annunci
+    Dato che esiste un annuncio di lavoro con titolo "Developer Anonimo" inserito da "admin@devspot.com"
+    E esiste un annuncio di lavoro con titolo "Developer Azienda" inserito da "employer@devspot.com"
+    Quando navigo alla pagina "Job Postings"
+    Allora dovrei vedere l'annuncio con titolo "Developer Azienda" nella pagina
+    E non dovrei vedere l'annuncio con titolo "Developer Anonimo" nella pagina
+
+  @seed:users @auth:admin
+  Scenario: Cancellazione annuncio come amministratore
+    Dato che esiste un annuncio di lavoro con titolo "Job da Eliminare Admin" inserito da "employer@devspot.com"
+    Quando elimino l'annuncio con titolo "Job da Eliminare Admin"
+    Allora dovrei ottenere uno stato di risposta "OK"
+    E un annuncio di lavoro con titolo "Job da Eliminare Admin" non dovrebbe esistere nel sistema
+
+  @seed:users @auth:employer
+  Scenario: Cancellazione del proprio annuncio come datore di lavoro
+    Dato che esiste un annuncio di lavoro con titolo "Mio Job Datore" inserito da "employer@devspot.com"
+    Quando elimino l'annuncio con titolo "Mio Job Datore"
+    Allora dovrei ottenere uno stato di risposta "OK"
+    E un annuncio di lavoro con titolo "Mio Job Datore" non dovrebbe esistere nel sistema

@@ -144,23 +144,23 @@ namespace DevSpot.Antigravity.AcceptanceTests.Features.JobPosting
 #line 11
     await testRunner.GivenAsync("che sono sulla pagina \"Create Job Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table6 = new global::Reqnroll.Table(new string[] {
                             "Field",
                             "Value"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Title",
                             "Senior C# Architect"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Description",
                             "We are looking for a senior architect."});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Company",
                             "TechCorp"});
-                table4.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "Location",
                             "Remote"});
 #line 12
-    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table4, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table6, "Quando ");
 #line hidden
 #line 18
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
@@ -201,23 +201,23 @@ namespace DevSpot.Antigravity.AcceptanceTests.Features.JobPosting
 #line 24
     await testRunner.GivenAsync("che sono sulla pagina \"Create Job Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table7 = new global::Reqnroll.Table(new string[] {
                             "Field",
                             "Value"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Title",
                             "Admin Placed Job"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Description",
                             "This is a job posted by the administrator."});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Company",
                             "DevSpot"});
-                table5.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "Location",
                             "Milan"});
 #line 25
-    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table5, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table7, "Quando ");
 #line hidden
 #line 31
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
@@ -258,26 +258,235 @@ namespace DevSpot.Antigravity.AcceptanceTests.Features.JobPosting
 #line 37
     await testRunner.GivenAsync("che sono sulla pagina \"Create Job Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table6 = new global::Reqnroll.Table(new string[] {
+                global::Reqnroll.Table table8 = new global::Reqnroll.Table(new string[] {
                             "Field",
                             "Value"});
-                table6.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Title",
                             "Missing Description Job"});
-                table6.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Company",
                             "TechCorp"});
-                table6.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Location",
                             "Remote"});
 #line 38
-    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table6, "Quando ");
+    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table8, "Quando ");
 #line hidden
 #line 43
     await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
 #line 44
     await testRunner.ThenAsync("dovrei vedere degli errori di validazione", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Visualizzazione annunci come utente anonimo")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione degli Annunci di Lavoro")]
+        [Xunit.TraitAttribute("Description", "Visualizzazione annunci come utente anonimo")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:anonymous")]
+        public async System.Threading.Tasks.Task VisualizzazioneAnnunciComeUtenteAnonimo()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:anonymous"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Visualizzazione annunci come utente anonimo", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 47
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 48
+    await testRunner.GivenAsync("che esiste un annuncio di lavoro con titolo \"Developer Anonimo\" inserito da \"admi" +
+                        "n@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 49
+    await testRunner.AndAsync("esiste un annuncio di lavoro con titolo \"Developer Azienda\" inserito da \"employer" +
+                        "@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 50
+    await testRunner.WhenAsync("navigo alla pagina \"Job Postings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 51
+    await testRunner.ThenAsync("dovrei vedere l\'annuncio con titolo \"Developer Anonimo\" nella pagina", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 52
+    await testRunner.AndAsync("dovrei vedere l\'annuncio con titolo \"Developer Azienda\" nella pagina", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Visualizzazione annunci come amministratore")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione degli Annunci di Lavoro")]
+        [Xunit.TraitAttribute("Description", "Visualizzazione annunci come amministratore")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:admin")]
+        public async System.Threading.Tasks.Task VisualizzazioneAnnunciComeAmministratore()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:admin"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Visualizzazione annunci come amministratore", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 55
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 56
+    await testRunner.GivenAsync("che esiste un annuncio di lavoro con titolo \"Developer Anonimo\" inserito da \"admi" +
+                        "n@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 57
+    await testRunner.AndAsync("esiste un annuncio di lavoro con titolo \"Developer Azienda\" inserito da \"employer" +
+                        "@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 58
+    await testRunner.WhenAsync("navigo alla pagina \"Job Postings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 59
+    await testRunner.ThenAsync("dovrei vedere l\'annuncio con titolo \"Developer Anonimo\" nella pagina", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 60
+    await testRunner.AndAsync("dovrei vedere l\'annuncio con titolo \"Developer Azienda\" nella pagina", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Visualizzazione annunci come datore di lavoro mostra solo i propri annunci")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione degli Annunci di Lavoro")]
+        [Xunit.TraitAttribute("Description", "Visualizzazione annunci come datore di lavoro mostra solo i propri annunci")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:employer")]
+        public async System.Threading.Tasks.Task VisualizzazioneAnnunciComeDatoreDiLavoroMostraSoloIPropriAnnunci()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:employer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Visualizzazione annunci come datore di lavoro mostra solo i propri annunci", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 63
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 64
+    await testRunner.GivenAsync("che esiste un annuncio di lavoro con titolo \"Developer Anonimo\" inserito da \"admi" +
+                        "n@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 65
+    await testRunner.AndAsync("esiste un annuncio di lavoro con titolo \"Developer Azienda\" inserito da \"employer" +
+                        "@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 66
+    await testRunner.WhenAsync("navigo alla pagina \"Job Postings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 67
+    await testRunner.ThenAsync("dovrei vedere l\'annuncio con titolo \"Developer Azienda\" nella pagina", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 68
+    await testRunner.AndAsync("non dovrei vedere l\'annuncio con titolo \"Developer Anonimo\" nella pagina", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Cancellazione annuncio come amministratore")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione degli Annunci di Lavoro")]
+        [Xunit.TraitAttribute("Description", "Cancellazione annuncio come amministratore")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:admin")]
+        public async System.Threading.Tasks.Task CancellazioneAnnuncioComeAmministratore()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:admin"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Cancellazione annuncio come amministratore", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 71
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 72
+    await testRunner.GivenAsync("che esiste un annuncio di lavoro con titolo \"Job da Eliminare Admin\" inserito da " +
+                        "\"employer@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 73
+    await testRunner.WhenAsync("elimino l\'annuncio con titolo \"Job da Eliminare Admin\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 74
+    await testRunner.ThenAsync("dovrei ottenere uno stato di risposta \"OK\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 75
+    await testRunner.AndAsync("un annuncio di lavoro con titolo \"Job da Eliminare Admin\" non dovrebbe esistere n" +
+                        "el sistema", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Cancellazione del proprio annuncio come datore di lavoro")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione degli Annunci di Lavoro")]
+        [Xunit.TraitAttribute("Description", "Cancellazione del proprio annuncio come datore di lavoro")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:employer")]
+        public async System.Threading.Tasks.Task CancellazioneDelProprioAnnuncioComeDatoreDiLavoro()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:employer"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Cancellazione del proprio annuncio come datore di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 78
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 79
+    await testRunner.GivenAsync("che esiste un annuncio di lavoro con titolo \"Mio Job Datore\" inserito da \"employe" +
+                        "r@devspot.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+#line 80
+    await testRunner.WhenAsync("elimino l\'annuncio con titolo \"Mio Job Datore\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+#line hidden
+#line 81
+    await testRunner.ThenAsync("dovrei ottenere uno stato di risposta \"OK\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+#line 82
+    await testRunner.AndAsync("un annuncio di lavoro con titolo \"Mio Job Datore\" non dovrebbe esistere nel siste" +
+                        "ma", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

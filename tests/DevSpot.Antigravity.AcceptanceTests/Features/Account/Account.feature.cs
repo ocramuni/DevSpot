@@ -248,6 +248,100 @@ namespace DevSpot.Antigravity.AcceptanceTests.Features.Account
             await this.ScenarioCleanupAsync();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Accesso con credenziali valide")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione dell\'Account")]
+        [Xunit.TraitAttribute("Description", "Accesso con credenziali valide")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:anonymous")]
+        public async System.Threading.Tasks.Task AccessoConCredenzialiValide()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:anonymous"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Accesso con credenziali valide", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 44
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 45
+    await testRunner.GivenAsync("che sono sulla pagina \"Login\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+                global::Reqnroll.Table table4 = new global::Reqnroll.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table4.AddRow(new string[] {
+                            "Email",
+                            "admin@devspot.com"});
+                table4.AddRow(new string[] {
+                            "Password",
+                            "Admin123!"});
+#line 46
+    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table4, "Quando ");
+#line hidden
+#line 50
+    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 51
+    await testRunner.ThenAsync("dovrei essere reindirizzato alla pagina \"Job Postings\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Accesso fallito con credenziali non valide")]
+        [Xunit.TraitAttribute("FeatureTitle", "Gestione dell\'Account")]
+        [Xunit.TraitAttribute("Description", "Accesso fallito con credenziali non valide")]
+        [Xunit.TraitAttribute("Category", "seed:users")]
+        [Xunit.TraitAttribute("Category", "auth:anonymous")]
+        public async System.Threading.Tasks.Task AccessoFallitoConCredenzialiNonValide()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "seed:users",
+                    "auth:anonymous"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Accesso fallito con credenziali non valide", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 54
+  this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 55
+    await testRunner.GivenAsync("che sono sulla pagina \"Login\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
+                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table5.AddRow(new string[] {
+                            "Email",
+                            "admin@devspot.com"});
+                table5.AddRow(new string[] {
+                            "Password",
+                            "PasswordErrata1!"});
+#line 56
+    await testRunner.WhenAsync("compilo il modulo con i seguenti valori:", ((string)(null)), table5, "Quando ");
+#line hidden
+#line 60
+    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line hidden
+#line 61
+    await testRunner.ThenAsync("dovrei vedere il messaggio di errore di validazione \"Invalid login attempt.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : object, Xunit.IAsyncLifetime

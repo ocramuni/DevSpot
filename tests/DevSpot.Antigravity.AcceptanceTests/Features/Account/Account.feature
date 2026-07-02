@@ -39,3 +39,23 @@ Funzionalità: Gestione dell'Account
       | ConfirmPassword | Mismatch123! |
     E invio il modulo
     Allora dovrei vedere degli errori di validazione
+
+  @seed:users @auth:anonymous
+  Scenario: Accesso con credenziali valide
+    Dato che sono sulla pagina "Login"
+    Quando compilo il modulo con i seguenti valori:
+      | Field    | Value             |
+      | Email    | admin@devspot.com |
+      | Password | Admin123!         |
+    E invio il modulo
+    Allora dovrei essere reindirizzato alla pagina "Job Postings"
+
+  @seed:users @auth:anonymous
+  Scenario: Accesso fallito con credenziali non valide
+    Dato che sono sulla pagina "Login"
+    Quando compilo il modulo con i seguenti valori:
+      | Field    | Value             |
+      | Email    | admin@devspot.com |
+      | Password | PasswordErrata1!  |
+    E invio il modulo
+    Allora dovrei vedere il messaggio di errore di validazione "Invalid login attempt."
