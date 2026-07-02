@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevSpot.Test
+namespace DevSpot.UnitTests
 {
     public class JobPostingRepositoryTests
     {
