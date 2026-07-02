@@ -19,7 +19,7 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::Xunit.TraitAttribute("Category", "seed:roles")]
     [global::Xunit.TraitAttribute("Category", "seed:users")]
-    public partial class GestioneAnnunciDiLavoroFeature : object, global::Xunit.IClassFixture<GestioneAnnunciDiLavoroFeature.FixtureData>, global::Xunit.IAsyncLifetime
+    public partial class CoperturaVisualizzazioneOfferteDiLavoroFeature : object, global::Xunit.IClassFixture<CoperturaVisualizzazioneOfferteDiLavoroFeature.FixtureData>, global::Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
@@ -28,15 +28,16 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
                 "seed:roles",
                 "seed:users"};
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Gestione annunci di lavoro", "  In qualità di datore di lavoro\n  Voglio creare e visualizzare gli annunci di la" +
-                "voro\n  Così che le nuove posizioni rimangano salvate", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("it"), "Features/JobPosting", "Copertura visualizzazione offerte di lavoro", "  In qualità di visitatore o utente autenticato\n  Voglio visualizzare le offerte " +
+                "di lavoro in base ai miei permessi di accesso\n  Così da consultare gli annunci s" +
+                "enza ricevere errori", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
         private global::Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CreateJobPosting.feature"
+#line 1 "JobPostingVisibilityCoverage.feature"
 #line hidden
         
-        public GestioneAnnunciDiLavoroFeature(GestioneAnnunciDiLavoroFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CoperturaVisualizzazioneOfferteDiLavoroFeature(CoperturaVisualizzazioneOfferteDiLavoroFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
         }
@@ -110,7 +111,7 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/CreateJobPosting.feature.ndjson", 5);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/JobPosting/JobPostingVisibilityCoverage.feature.ndjson", 6);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -138,20 +139,18 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
             await this.TestTearDownAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="Gli utenti anonimi vengono reindirizzati lontano dalla pagina di creazione")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Gestione annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "Gli utenti anonimi vengono reindirizzati lontano dalla pagina di creazione")]
-        [global::Xunit.TraitAttribute("Category", "auth:anonymous")]
-        public async global::System.Threading.Tasks.Task GliUtentiAnonimiVengonoReindirizzatiLontanoDallaPaginaDiCreazione()
+        [global::Xunit.SkippableFactAttribute(DisplayName="Un visitatore anonimo visualizza tutte le offerte di lavoro")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Copertura visualizzazione offerte di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "Un visitatore anonimo visualizza tutte le offerte di lavoro")]
+        public async global::System.Threading.Tasks.Task UnVisitatoreAnonimoVisualizzaTutteLeOfferteDiLavoro()
         {
-            string[] tagsOfScenario = new string[] {
-                    "auth:anonymous"};
+            string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Gli utenti anonimi vengono reindirizzati lontano dalla pagina di creazione", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Un visitatore anonimo visualizza tutte le offerte di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 9
+#line 8
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -161,27 +160,30 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
             else
             {
                 await this.ScenarioStartAsync();
+#line 9
+    await testRunner.GivenAsync("che sono sulla pagina \"Offerte di lavoro\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line hidden
 #line 10
-    await testRunner.GivenAsync("che sono sulla pagina \"Nuovo annuncio\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+    await testRunner.ThenAsync("dovrei vedere \"Employer Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
 #line 11
-    await testRunner.ThenAsync("dovrei essere reindirizzato alla pagina \"Accesso\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+    await testRunner.AndAsync("dovrei vedere \"Admin Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="I campi mancanti di un annuncio mostrano gli errori di convalida")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Gestione annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "I campi mancanti di un annuncio mostrano gli errori di convalida")]
-        [global::Xunit.TraitAttribute("Category", "auth:employer")]
-        public async global::System.Threading.Tasks.Task ICampiMancantiDiUnAnnuncioMostranoGliErroriDiConvalida()
+        [global::Xunit.SkippableFactAttribute(DisplayName="Un cercatore di lavoro visualizza tutte le offerte di lavoro")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Copertura visualizzazione offerte di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "Un cercatore di lavoro visualizza tutte le offerte di lavoro")]
+        [global::Xunit.TraitAttribute("Category", "auth:jobseeker")]
+        public async global::System.Threading.Tasks.Task UnCercatoreDiLavoroVisualizzaTutteLeOfferteDiLavoro()
         {
             string[] tagsOfScenario = new string[] {
-                    "auth:employer"};
+                    "auth:jobseeker"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "1";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("I campi mancanti di un annuncio mostrano gli errori di convalida", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Un cercatore di lavoro visualizza tutte le offerte di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
 #line 14
@@ -195,41 +197,32 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
             {
                 await this.ScenarioStartAsync();
 #line 15
-    await testRunner.GivenAsync("che sono sulla pagina \"Nuovo annuncio\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+    await testRunner.GivenAsync("che sono sulla pagina \"Offerte di lavoro\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
 #line 16
-    await testRunner.WhenAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+    await testRunner.ThenAsync("dovrei vedere \"Employer Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
 #line 17
-    await testRunner.ThenAsync("dovrei vedere il messaggio di convalida \"Il campo Title è obbligatorio.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
-#line hidden
-#line 18
-    await testRunner.AndAsync("dovrei vedere il messaggio di convalida \"Il campo Description è obbligatorio.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
-#line hidden
-#line 19
-    await testRunner.AndAsync("dovrei vedere il messaggio di convalida \"Il campo Company è obbligatorio.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
-#line hidden
-#line 20
-    await testRunner.AndAsync("dovrei vedere il messaggio di convalida \"Il campo Location è obbligatorio.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+    await testRunner.AndAsync("dovrei vedere \"Admin Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Xunit.SkippableFactAttribute(DisplayName="Un datore di lavoro può creare un annuncio di lavoro")]
-        [global::Xunit.TraitAttribute("FeatureTitle", "Gestione annunci di lavoro")]
-        [global::Xunit.TraitAttribute("Description", "Un datore di lavoro può creare un annuncio di lavoro")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Un datore di lavoro visualizza solo le proprie offerte di lavoro")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Copertura visualizzazione offerte di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "Un datore di lavoro visualizza solo le proprie offerte di lavoro")]
         [global::Xunit.TraitAttribute("Category", "auth:employer")]
-        public async global::System.Threading.Tasks.Task UnDatoreDiLavoroPuoCreareUnAnnuncioDiLavoro()
+        public async global::System.Threading.Tasks.Task UnDatoreDiLavoroVisualizzaSoloLeProprieOfferteDiLavoro()
         {
             string[] tagsOfScenario = new string[] {
                     "auth:employer"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "2";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Un datore di lavoro può creare un annuncio di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Un datore di lavoro visualizza solo le proprie offerte di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 23
+#line 20
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -239,42 +232,50 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
             else
             {
                 await this.ScenarioStartAsync();
-#line 24
-    await testRunner.GivenAsync("che sono sulla pagina \"Nuovo annuncio\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
+#line 21
+    await testRunner.GivenAsync("che sono sulla pagina \"Offerte di lavoro\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-                global::Reqnroll.Table table5 = new global::Reqnroll.Table(new string[] {
-                            "Campo",
-                            "Valore"});
-                table5.AddRow(new string[] {
-                            "Title",
-                            "Backend Engineer"});
-                table5.AddRow(new string[] {
-                            "Description",
-                            "Build services"});
-                table5.AddRow(new string[] {
-                            "Company",
-                            "DevSpot"});
-                table5.AddRow(new string[] {
-                            "Location",
-                            "Remote"});
-#line 25
-    await testRunner.WhenAsync("compilo il modulo con i seguenti valori", ((string)(null)), table5, "Quando ");
+#line 22
+    await testRunner.ThenAsync("dovrei vedere \"Employer Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
-#line 31
-    await testRunner.AndAsync("invio il modulo", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line 23
+    await testRunner.AndAsync("non dovrei vedere \"Admin Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
-#line 32
-    await testRunner.ThenAsync("dovrei essere reindirizzato alla pagina \"Tutti gli annunci\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="Un amministratore visualizza tutte le offerte di lavoro")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Copertura visualizzazione offerte di lavoro")]
+        [global::Xunit.TraitAttribute("Description", "Un amministratore visualizza tutte le offerte di lavoro")]
+        [global::Xunit.TraitAttribute("Category", "auth:admin")]
+        public async global::System.Threading.Tasks.Task UnAmministratoreVisualizzaTutteLeOfferteDiLavoro()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "auth:admin"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "3";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Un amministratore visualizza tutte le offerte di lavoro", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 26
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
-#line 33
-    await testRunner.WhenAsync("seguo il reindirizzamento", ((string)(null)), ((global::Reqnroll.Table)(null)), "Quando ");
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 27
+    await testRunner.GivenAsync("che sono sulla pagina \"Offerte di lavoro\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Dato ");
 #line hidden
-#line 34
-    await testRunner.ThenAsync("dovrei vedere \"Backend Engineer\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
+#line 28
+    await testRunner.ThenAsync("dovrei vedere \"Employer Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Allora ");
 #line hidden
-#line 35
-    await testRunner.AndAsync("il database dovrebbe contenere un annuncio di lavoro intitolato \"Backend Engineer" +
-                        "\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
+#line 29
+    await testRunner.AndAsync("dovrei vedere \"Admin Seed Posting\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "E ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -287,12 +288,12 @@ namespace DevSpot.Copilot.AcceptanceTests.Features.JobPosting
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
             {
-                await GestioneAnnunciDiLavoroFeature.FeatureSetupAsync();
+                await CoperturaVisualizzazioneOfferteDiLavoroFeature.FeatureSetupAsync();
             }
             
             async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
             {
-                await GestioneAnnunciDiLavoroFeature.FeatureTearDownAsync();
+                await CoperturaVisualizzazioneOfferteDiLavoroFeature.FeatureTearDownAsync();
             }
         }
     }

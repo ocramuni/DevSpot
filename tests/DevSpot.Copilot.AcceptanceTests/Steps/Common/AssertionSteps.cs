@@ -2,6 +2,7 @@ using DevSpot.Copilot.AcceptanceTests.Fixtures;
 using DevSpot.Copilot.AcceptanceTests.Support.Routing;
 using DevSpot.Copilot.AcceptanceTests.Support.State;
 using DevSpot.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reqnroll;
@@ -58,6 +59,13 @@ public sealed class AssertionSteps
         Assert.Contains(expectedText, html, StringComparison.OrdinalIgnoreCase);
     }
 
+    [Then(@"non dovrei vedere ""(.*)""")]
+    public void ThenIShouldNotSeeText(string unexpectedText)
+    {
+        var html = _httpState.LastHtml ?? throw new InvalidOperationException("Nessuna risposta HTML disponibile.");
+        Assert.DoesNotContain(unexpectedText, html, StringComparison.OrdinalIgnoreCase);
+    }
+
     [Then(@"il database dovrebbe contenere un annuncio di lavoro intitolato ""(.*)""")]
     public async Task ThenTheDatabaseShouldContainAJobPostingTitled(string title)
     {
@@ -67,12 +75,36 @@ public sealed class AssertionSteps
         Assert.True(exists);
     }
 
+    [Then(@"il database non dovrebbe contenere un annuncio di lavoro intitolato ""(.*)""")]
+    public async Task ThenTheDatabaseShouldNotContainAJobPostingTitled(string title)
+    {
+        using var scope = _fixture.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var exists = await dbContext.JobPosting.AnyAsync(jobPosting => jobPosting.Title == title);
+        Assert.False(exists);
+    }
+
+    [Then(@"il database dovrebbe contenere un utente con email ""(.*)"" nel ruolo ""(.*)""")]
+    public async Task ThenTheDatabaseShouldContainAUserWithEmailInRole(string email, string role)
+    {
+        using var scope = _fixture.CreateScope();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+        var user = await userManager.FindByEmailAsync(email);
+        Assert.NotNull(user);
+        Assert.True(await userManager.IsInRoleAsync(user!, role));
+    }
+
     private static string TranslateValidationMessage(string expectedMessage)
     {
         var match = RequiredFieldMessagePattern.Match(expectedMessage);
         if (!match.Success)
         {
-            return expectedMessage;
+            return expectedMessage switch
+            {
+                "Il tentativo di accesso non è valido." => "Invalid login attempt.",
+                _ => expectedMessage
+            };
         }
 
         return $"The {match.Groups[1].Value} field is required.";

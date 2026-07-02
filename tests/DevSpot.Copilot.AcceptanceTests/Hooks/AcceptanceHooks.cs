@@ -59,6 +59,7 @@ public sealed class AcceptanceHooks
     {
         using var scope = _fixture.CreateScope();
         await _databaseSeeder.SeedBaseAsync(scope.ServiceProvider);
+        await _databaseSeeder.SeedJobPostingsAsync(scope.ServiceProvider);
     }
 
     [BeforeScenario(Order = 30)]

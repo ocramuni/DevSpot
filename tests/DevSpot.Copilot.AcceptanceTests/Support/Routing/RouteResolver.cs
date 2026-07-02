@@ -6,9 +6,12 @@ public sealed class RouteResolver
     {
         ["Accesso"] = "/Identity/Account/Login",
         ["Login"] = "/Identity/Account/Login",
+        ["Registrazione"] = "/Identity/Account/Register",
+        ["Register"] = "/Identity/Account/Register",
         ["Nuovo annuncio"] = "/JobPostings/Create",
         ["Create Job Posting"] = "/JobPostings/Create",
         ["Create"] = "/JobPostings/Create",
+        ["Offerte di lavoro"] = "/",
         ["Tutti gli annunci"] = "/",
         ["All Jobs"] = "/",
         ["Index"] = "/",

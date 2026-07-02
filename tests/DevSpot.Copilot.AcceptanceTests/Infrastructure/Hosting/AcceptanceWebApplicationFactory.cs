@@ -1,7 +1,7 @@
 using DevSpot.Data;
 using DevSpot.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -43,9 +43,16 @@ public sealed class AcceptanceWebApplicationFactory : WebApplicationFactory<Prog
 
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = ScenarioAuthenticationDefaults.Scheme;
-                options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
-            }).AddScheme<AuthenticationSchemeOptions, ScenarioAuthenticationHandler>(ScenarioAuthenticationDefaults.Scheme, _ => { });
+                options.DefaultAuthenticateScheme = "Hybrid";
+                options.DefaultChallengeScheme = "Hybrid";
+            })
+            .AddPolicyScheme("Hybrid", "Hybrid auth scheme", options =>
+            {
+                options.ForwardDefaultSelector = _ => _authState.IsAuthenticated
+                    ? ScenarioAuthenticationDefaults.Scheme
+                    : IdentityConstants.ApplicationScheme;
+            })
+            .AddScheme<AuthenticationSchemeOptions, ScenarioAuthenticationHandler>(ScenarioAuthenticationDefaults.Scheme, _ => { });
 
             services.AddSingleton<IEmailSender, global::DevSpot.Services.NoOpEmailSender>();
         });
