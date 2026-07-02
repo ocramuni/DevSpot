@@ -34,7 +34,7 @@ Testing scope:
 - authenticated and anonymous scenarios
 
 Architecture decisions already made:
-1. Use a separate project, preferably named `DevSpot.AcceptanceTests`.
+1. Use a separate project, preferably named `DevSpot.Claude.AcceptanceTests`.
 2. Target `.NET 8`.
 3. Use xUnit as the runner.
 4. Use Reqnroll for Gherkin tests.
@@ -62,7 +62,7 @@ Desired lifecycle per scenario:
 Preferred internal structure:
 Create something close to this, but adapt names to the actual repository:
 
-tests/DevSpot.AcceptanceTests/
+tests/DevSpot.Claude.AcceptanceTests/
 ├─ Features/
 │  ├─ JobPosting/
 │  └─ Account/
@@ -85,7 +85,7 @@ tests/DevSpot.AcceptanceTests/
 │  └─ Assertions/
 ├─ reqnroll.json
 ├─ appsettings.Test.json
-└─ DevSpot.AcceptanceTests.csproj
+└─ DevSpot.Claude.AcceptanceTests.csproj
 
 Required responsibilities:
 - AcceptanceTestFixture:
