@@ -43,7 +43,7 @@ Create a separate acceptance test project for a .NET 8 ASP.NET Core app that use
 
 ## Architecture decisions already made
 
-1. Use a separate test project, preferably named `DevSpot.AcceptanceTests`.
+1. Use a separate test project, preferably named `DevSpot.Copilot.AcceptanceTests`.
 2. Use xUnit as the runner.
 3. Use Reqnroll for Gherkin BDD tests.
 4. Use `Reqnroll.Microsoft.Extensions.DependencyInjection`.
@@ -73,7 +73,7 @@ Create a separate acceptance test project for a .NET 8 ASP.NET Core app that use
 Create something close to this, but adapt names and namespaces to the actual repository:
 
 ```text
-tests/DevSpot.AcceptanceTests/
+tests/DevSpot.Copilot.AcceptanceTests/
 ├─ Features/
 │  ├─ JobPosting/
 │  └─ Account/
@@ -96,7 +96,7 @@ tests/DevSpot.AcceptanceTests/
 │  └─ Assertions/
 ├─ reqnroll.json
 ├─ appsettings.Test.json
-└─ DevSpot.AcceptanceTests.csproj
+└─ DevSpot.Copilot.AcceptanceTests.csproj
 ```
 
 ## Core classes and responsibilities

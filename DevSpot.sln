@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3A0868DC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSpot.UnitTests", "tests\DevSpot.UnitTests\DevSpot.UnitTests.csproj", "{FDBDC5F6-2830-4DBA-8361-1001BB71B875}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSpot.AcceptanceTests", "tests\DevSpot.AcceptanceTests\DevSpot.AcceptanceTests.csproj", "{3515804E-52B6-408F-BDFB-FF430347799E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSpot.Copilot.AcceptanceTests", "tests\DevSpot.Copilot.AcceptanceTests\DevSpot.Copilot.AcceptanceTests.csproj", "{3515804E-52B6-408F-BDFB-FF430347799E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
